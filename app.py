@@ -1,7 +1,14 @@
 import streamlit as st
 import numpy as np
-from sklearn.datasets import load_iris
-from sklearn.ensemble import RandomForestClassifier
+
+# 패키지 import 에러 처리
+try:
+    from sklearn.datasets import load_iris
+    from sklearn.ensemble import RandomForestClassifier
+except ImportError as e:
+    st.error(f"필요한 패키지를 불러올 수 없습니다: {e}")
+    st.error("requirements.txt 파일을 확인해주세요.")
+    st.stop()
 
 # 모델 훈련 (매번 새로 훈련 - 테스트용)
 @st.cache_resource
